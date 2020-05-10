@@ -1,0 +1,18 @@
+@font-face{
+  font-family: "SpartanRegular";
+  font-display:swap;
+  src: url('../fonts/Spartan-Regular.woff2') format("woff2"),
+    url('../fonts/Spartan-Regular.ttf') format("ttf");
+}
+@font-face{
+  font-family: "SpartanMedium";
+  font-display: swap;
+  src: url('../fonts/Spartan-SemiBold.woff2') format("woff2"),
+    url('../fonts/Spartan-SemiBold.ttf') format("ttf");
+}
+@font-face{
+  font-family: "SpartanBold";
+  font-display: swap;
+  src: url('../fonts/Spartan-Black.woff2') format("woff2"),
+    url('../fonts/Spartan-Black.ttf') format("ttf");
+}
