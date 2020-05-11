@@ -30,14 +30,15 @@ class Header extends Component {
   }
 
   handleScroll = () => {
-    if(window.pageYOffset > 100) {
+    const firstFold = document.getElementById('homePageContent_1');
+    if (firstFold && window.pageYOffset > firstFold.getBoundingClientRect().height) {
       this.setState({
         triggerColorChange: true,
-      })
+      });
     } else {
       this.setState({
         triggerColorChange: false,
-      })
+      });
     }
   }
 

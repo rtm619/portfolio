@@ -4,6 +4,7 @@ import { graphql } from 'gatsby';
 
 import Banner from '../components/Banner/Banner';
 import Header from '../components/Header/Header';
+import styles from './styles/home.twstyles';
 
 class Home extends PureComponent {
   static propTypes = {
@@ -14,25 +15,30 @@ class Home extends PureComponent {
     }).isRequired,
   }
 
-  getPageContents = (content) => {
+  getPageContents = (content, index) => {
     switch (content.componentType) {
-      case 'ContentfulBanner': return (<Banner {...content} />);
+      case 'ContentfulBanner': return (
+        <div id={`homePageContent_${index + 1}`} className={styles.bannerWrapper}>
+          <Banner {...content} />
+        </div>
+      );
       default: return null;
     }
   }
 
   render() {
     const { data, pageContext } = this.props;
-    console.log(process.env.GATSBY_CONTENTFUL_SPACE_ID);
     return (
       <>
         <Header headerData={pageContext.headerData} />
         <h1 className="h-0 overflow-hidden">{data.contentfulPage.title}</h1>
-        {data.contentfulPage.pageContent.map((content) => (
+        {data.contentfulPage.pageContent.map((content, index) => (
           <React.Fragment key={content.name}>
-            {this.getPageContents(content)}
+            {this.getPageContents(content, index)}
           </React.Fragment>
         ))}
+        <div className="w-full h-screen flex items-center justify-center bg-black text-white font-SpartanBold text-center text-32">Something big is coming....</div>
+        <div className="w-full h-screen flex items-center justify-center bg-black text-white font-SpartanBold text-center text-32">Placeholder</div>
       </>
     );
   }

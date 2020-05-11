@@ -62,3 +62,21 @@
 .hamburger-close:hover svg {
   @apply text-orange;
 }
+/* END OF LAYOUT CSS */
+/* MAIN CSS */
+.fade-in {
+  animation: fade-in 1s ease-in 1s forwards;
+}
+::-webkit-scrollbar {
+  @apply w-10;
+}
+::-webkit-scrollbar-track {
+  @apply bg-white;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-black;
+}
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-orange;
+}
+/* MAIN CSS */
