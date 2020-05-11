@@ -23,8 +23,8 @@ const Banner = ({
       <ImageSet
         className={componentStyle.img}
         wrapperClass={componentStyle.imgWrapper}
-        src={desktopImage.file && desktopImage.file.url}
-        srcSet={mobileImage.file && mobileImage.file.url}
+        srcSet={desktopImage.file && desktopImage.file.url}
+        src={mobileImage.file && mobileImage.file.url}
         alt={mobileImage.title}
       />
       <div className={componentStyle.contentWrapper}>
@@ -32,7 +32,7 @@ const Banner = ({
           <Typography className={componentStyle.title}>{title.body}</Typography>
         )}
         {shortDescription && (
-          <Typography className={componentStyle.title}>{shortDescription.body}</Typography>
+          <Typography className={componentStyle.shortDescription}>{shortDescription.body}</Typography>
         )}
         {link && (
           <Button className={componentStyle.link} component="Link" />

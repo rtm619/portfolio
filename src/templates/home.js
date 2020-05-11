@@ -2,15 +2,40 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
 
-class Home extends PureComponent {
-	static propTypes = {
-		data: PropTypes.object,
-	}
+import Banner from '../components/Banner/Banner';
+import Header from '../components/Header/Header';
 
-	render() {
-		const { data } = this.props;
-	return (<h1 className="text-24 font-SpartanBold">{data.contentfulPage.title}</h1>);
-	}
+class Home extends PureComponent {
+  static propTypes = {
+    data: PropTypes.object,
+    pageContext: PropTypes.shape({
+      headerData: PropTypes.object.isRequired,
+      url: PropTypes.string.isRequired,
+    }).isRequired,
+  }
+
+  getPageContents = (content) => {
+    switch (content.componentType) {
+      case 'ContentfulBanner': return (<Banner {...content} />);
+      default: return null;
+    }
+  }
+
+  render() {
+    const { data, pageContext } = this.props;
+    console.log(process.env.GATSBY_CONTENTFUL_SPACE_ID);
+    return (
+      <>
+        <Header headerData={pageContext.headerData} />
+        <h1 className="h-0 overflow-hidden">{data.contentfulPage.title}</h1>
+        {data.contentfulPage.pageContent.map((content) => (
+          <React.Fragment key={content.name}>
+            {this.getPageContents(content)}
+          </React.Fragment>
+        ))}
+      </>
+    );
+  }
 }
 
 export const query = graphql`
@@ -22,6 +47,7 @@ query Home($url: String!) {
       type
       url
       pageContent {
+        componentType: __typename
         ... on ContentfulBanner {
           name
           title {
