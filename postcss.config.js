@@ -15,7 +15,7 @@ module.exports = {
         },
       ],
     },
-    ...(process.env.DEVELOPMENT === 'false' && {
+    ...(process.env.GATSBY_DEVELOPMENT === 'false' && {
       '@fullhuman/postcss-purgecss': {
         whitelistPatterns: [],
         whitelist: [],
