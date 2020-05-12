@@ -4,7 +4,8 @@ import { graphql } from 'gatsby';
 
 import Banner from '../components/Banner/Banner';
 import Header from '../components/Header/Header';
-import styles from './styles/home.twstyles';
+import styles from './styles/home.twstyle';
+import SectionContainer from '../components/Section/SectionContainer';
 
 class Home extends PureComponent {
   static propTypes = {
@@ -20,6 +21,11 @@ class Home extends PureComponent {
       case 'ContentfulBanner': return (
         <div id={`homePageContent_${index + 1}`} className={styles.bannerWrapper}>
           <Banner {...content} />
+        </div>
+      );
+      case 'ContentfulSection': return (
+        <div id={`homePageContent_${index + 1}`} className={styles.sectionWrapper}>
+          <SectionContainer {...content} />
         </div>
       );
       default: return null;
@@ -55,32 +61,18 @@ query Home($url: String!) {
       pageContent {
         componentType: __typename
         ... on ContentfulBanner {
-          name
-          title {
-            body: title
-          }
-          shortDescription {
-            body: shortDescription
-          }
-          variant
-          contentful_id
-          desktopImage {
-            file {
-              url
-            }
-            title
-          }
-          mobileImage {
-            file {
-              url
-            }
-            title
-          }
+          ...ContentfulBannerFragment
         }
         ... on ContentfulSection {
           name
-          contentful_id
+          entryId: contentful_id
           variant
+          sectionTitle: title{
+            ...ContentfulTypographyFragment
+          }
+          content {
+            ...ContentfulCardFragment
+          }
         }
       }
     }

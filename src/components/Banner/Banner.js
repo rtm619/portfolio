@@ -50,7 +50,7 @@ Banner.propTypes = {
   desktopImage: PropTypes.object.isRequired,
   mobileImage: PropTypes.object.isRequired,
   variant: PropTypes.string.isRequired,
-  link: PropTypes.object.isRequired,
+  link: PropTypes.object,
 };
 
 export default Banner;

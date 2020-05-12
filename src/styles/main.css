@@ -79,4 +79,38 @@
 ::-webkit-scrollbar-thumb:hover {
   @apply bg-orange;
 }
-/* MAIN CSS */
+.frameworkcard-button {
+  transition: background-color 0.75s ease-in-out;
+}
+.frameworkcard-button svg {
+  transform: translateX(49%);
+  transition: color 0.75s ease-in-out;
+}
+.frameworkcard-button:hover span {
+  @apply text-black;
+}
+.frameworkcard-button:hover svg {
+  @apply text-orange;
+}
+/* END OF MAIN CSS */
+/* MDL RESPONSIVE CSS */
+@screen mdl {
+  .frameworkcard-wrapper {
+    transition: all 1s ease-in;
+    opacity: 0;
+    transform: translateY(10%);
+  }
+  .in-viewport-fade {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+  .frameworkcard-content {
+    transform: translateY(5%);
+    transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+  }
+  .frameworkcard-wrapper:hover .frameworkcard-content {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
+/* MDL RESPONSIVE CSS */

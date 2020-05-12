@@ -71,12 +71,12 @@ class Header extends Component {
     const { menuOpen, hideNav, triggerColorChange } = this.state;
     return (
       <>
-        <div className={classnames(styles.wrapper, menuOpen ? 'menu-open' : 'menu-close', triggerColorChange ? 'black-gradient' : 'white-gradient')}>
+        <header className={classnames(styles.wrapper, menuOpen ? 'menu-open' : 'menu-close', triggerColorChange ? 'black-gradient' : 'white-gradient')}>
           <Button type="button" title="hamburger icon" component="button" className={styles.hamburgerButton} onClick={this.handleMenuClick}>
             <Logo className={classnames(styles.hamburgerIcon, triggerColorChange ? 'text-white' : 'text-black')} />
           </Button>
-        </div>
-        <div className={classnames(menuOpen ? styles.navigationWrapperOpen : styles.navigationWrapper, hideNav ? 'hidden' : '')}>
+        </header>
+        <nav className={classnames(menuOpen ? styles.navigationWrapperOpen : styles.navigationWrapper, hideNav ? 'hidden' : '')}>
           <div className={styles.closeButtonWrapper}>
             <Button type="button" title="close icon" component="button" className={styles.closeButton} onClick={this.handleMenuClick}>
               <CloseIcon className={styles.closeIcon} />
@@ -89,7 +89,7 @@ class Header extends Component {
               </Button>
             ))}
           </div>
-        </div>
+        </nav>
       </>
     );
   }
