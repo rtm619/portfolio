@@ -1,0 +1,79 @@
+{
+  "errors": [],
+  "warnings": [
+    "./node_modules/gatsby-core-utils/dist/get-gatsby-version.js 1:241-322\nCritical dependency: the request of a dependency is an expression\n @ ./node_modules/gatsby-core-utils/dist/index.js\n @ ./node_modules/gatsby-plugin-manifest/gatsby-ssr.js\n @ ./.cache/api-runner-ssr.js\n @ ./.cache/static-entry.js"
+  ],
+  "version": "4.43.0",
+  "hash": "401f0ff361135461a9af",
+  "publicPath": "/portfolio/",
+  "outputPath": "D:\\\\Workspace\\\\portfolio\\\\public",
+  "assetsByChunkName": {
+    "main": [
+      "render-page.js",
+      "render-page.js.map"
+    ]
+  },
+  "assets": [
+    {
+      "name": "render-page.js",
+      "size": 715490,
+      "chunks": [
+        "main"
+      ],
+      "chunkNames": [
+        "main"
+      ],
+      "info": {},
+      "emitted": false
+    },
+    {
+      "name": "render-page.js.map",
+      "size": 770454,
+      "chunks": [
+        "main"
+      ],
+      "chunkNames": [
+        "main"
+      ],
+      "info": {
+        "development": true
+      },
+      "emitted": false
+    }
+  ],
+  "filteredAssets": 0,
+  "entrypoints": {
+    "main": {
+      "chunks": [
+        "main"
+      ],
+      "assets": [
+        "render-page.js",
+        "render-page.js.map"
+      ],
+      "children": {},
+      "childAssets": {}
+    }
+  },
+  "namedChunkGroups": {
+    "main": {
+      "chunks": [
+        "main"
+      ],
+      "assets": [
+        "render-page.js",
+        "render-page.js.map"
+      ],
+      "children": {},
+      "childAssets": {}
+    }
+  },
+  "logging": {
+    "webpack.buildChunkGraph.visitModules": {
+      "entries": [],
+      "filteredEntries": 2,
+      "debug": false
+    }
+  },
+  "children": []
+}
