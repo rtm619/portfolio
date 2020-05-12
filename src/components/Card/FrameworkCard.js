@@ -44,7 +44,7 @@ return (
       {link && (
         <Button component="a" href={link.link && link.link.url} title={link.title} className={styles.link}>
           <span className={styles.linkText}>{link.text}</span>
-          <Triangle style={{ height: '31px', width: '31px' }} className={styles.linkIcon} />
+          <Triangle className={styles.linkIcon} />
         </Button>
       )}
     </div>
