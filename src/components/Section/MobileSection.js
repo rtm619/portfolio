@@ -18,22 +18,8 @@ export default class MobileSection extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      triggerHook: 'onLeave',
+      triggerHook: 'onEnter',
     };
-  }
-
-  getProgress = (progress, index, totalCount) => {
-    // This function behaves similar to Stagger, but I wanted to fine-tune stagger to my liking.
-    const start = (index / totalCount);
-    const end = ((index + 1) / totalCount);
-    const multiplier = totalCount;
-    if (progress <= start) {
-      return 0;
-    }
-    if (progress > start && progress <= end) {
-      return (progress - start) * multiplier;
-    }
-    return 1;
   }
 
   render() {
@@ -41,32 +27,33 @@ export default class MobileSection extends Component {
       title,
       titleClassName,
       content,
-      uid,
     } = this.props;
     const { triggerHook } = this.state;
     return (
-      <Controller>
-        <Scene triggerElement={`#${uid}`} triggerHook={triggerHook} duration="100%">
-          {(progress) => (
-            <div id={uid} className={styles.wrapper}>
-              {title && (
-                <Typography component={title.component} className={titleClassName}>
-                  {title.body && title.body.body}
-                </Typography>
+      <>
+        {title && (
+          <Typography component={title.component} className={titleClassName}>
+            {title.body && title.body.body}
+          </Typography>
+        )}
+        {content && content.map((item) => (
+          <Controller key={item.title}>
+            <Scene triggerHook={triggerHook} duration="100%">
+              {(progress) => (
+                <div className={styles.wrapper}>
+                  <Timeline progress={progress} duration="100%">
+                    <Tween from={{ opacity: 0, yPercent: 100, scale: '0' }} to={{ opacity: 1, yPercent: 0, scale: '1' }}>
+                      <div>
+                        <FrameworkCard {...item} />
+                      </div>
+                    </Tween>
+                  </Timeline>
+                </div>
               )}
-              {content && content.map((item, index) => (
-                <Timeline progress={this.getProgress(progress, index, content.length)} duration="100%">
-                  <Tween from={{ opacity: 0, yPercent: 100, scale: '0' }} to={{ opacity: 1, yPercent: 0, scale: '1' }}>
-                    <div key={item.title}>
-                      <FrameworkCard {...item} />
-                    </div>
-                  </Tween>
-                </Timeline>
-              ))}
-            </div>
-          )}
-        </Scene>
-      </Controller>
+            </Scene>
+          </Controller>
+        ))}
+      </>
     );
   }
 }
