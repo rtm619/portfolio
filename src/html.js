@@ -20,7 +20,7 @@ export default function HTML({
         />
         {headComponents}
       </head>
-      <body {...bodyAttributes}>
+      <body className="bg-black" {...bodyAttributes}>
         {preBodyComponents}
         <div
           key="body"

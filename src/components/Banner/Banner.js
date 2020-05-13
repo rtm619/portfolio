@@ -32,9 +32,10 @@ const Banner = ({
           <Typography className={componentStyle.title}>{title.body}</Typography>
         )}
         {shortDescription && (
-          <Typography className={componentStyle.shortDescription}>
-            {shortDescription.body}
-          </Typography>
+          <Typography
+            className={componentStyle.shortDescription}
+            innerHTML={shortDescription.body}
+          />
         )}
         {link && (
           <Button className={componentStyle.link} component="Link" />
