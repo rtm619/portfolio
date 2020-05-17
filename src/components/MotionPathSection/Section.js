@@ -16,7 +16,7 @@ const Section = ({ variant, triggerHook, content }) => {
   }
   return (
     <Controller>
-      <Scene triggerHook={triggerHook} duration="100%" indicators>
+      <Scene triggerHook={triggerHook} duration="100%">
         {(progress) => (
           <div className={componentStyle}>
             {content.map((item) => (
