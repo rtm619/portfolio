@@ -144,6 +144,7 @@ module.exports = {
       48: '48px',
       56: '56px',
       64: '64px',
+      '21r': '21rem',
     },
     fontWeight: {
       hairline: '100',
@@ -160,6 +161,9 @@ module.exports = {
       auto: 'auto',
       ...theme('spacing'),
       full: '100%',
+      '30v': '30vh',
+      '50v': '50vh',
+      '70v': '70vh',
       screen: '100vh',
     }),
     inset: {
@@ -318,6 +322,7 @@ module.exports = {
     zIndex: {
       auto: 'auto',
       0: '0',
+      1: '1',
       5: '5',
       10: '10',
       20: '20',

@@ -9,7 +9,6 @@ const DesktopSection = loadable(() => import('./DesktopSection'));
 
 class SectionContainer extends Component {
   static propTypes = {
-    sectionTitle: PropTypes.object,
     content: PropTypes.array.isRequired,
     variant: PropTypes.string.isRequired,
     entryId: PropTypes.string.isRequired,
@@ -40,9 +39,7 @@ class SectionContainer extends Component {
   }
 
   render() {
-    const {
- sectionTitle: title, variant, content, entryId,
-} = this.props;
+    const { variant, entryId, content } = this.props;
     const { screenWidth } = this.state;
     const isMobile = screenWidth < Number(process.env.GATSBY_MOBILE_BREAKPOINT);
 
@@ -55,15 +52,13 @@ class SectionContainer extends Component {
         {isMobile ? (
           <MobileSection
             uid={entryId}
-            titleClassName={componentStyle.title}
-            title={title}
+            variant={variant}
             content={content}
           />
         ) : (
           <DesktopSection
             uid={entryId}
-            titleClassName={componentStyle.title}
-            title={title}
+            variant={variant}
             content={content}
           />
           )}

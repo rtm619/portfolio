@@ -5,7 +5,10 @@ import { graphql } from 'gatsby';
 import Banner from '../components/Banner/Banner';
 import Header from '../components/Header/Header';
 import styles from './styles/home.twstyle';
-import SectionContainer from '../components/Section/SectionContainer';
+import AnimatedCardsSection from '../components/AnimatedCardsSection/SectionContainer';
+import Typography from '../components/Typography/Typography';
+import MotionPathSection from '../components/MotionPathSection/Section';
+import Metadata from '../components/Metadata/Metadata';
 
 class Home extends PureComponent {
   static propTypes = {
@@ -23,9 +26,21 @@ class Home extends PureComponent {
           <Banner {...content} />
         </div>
       );
-      case 'ContentfulSection': return (
-        <div id={`homePageContent_${index + 1}`} className={styles.sectionWrapper}>
-          <SectionContainer {...content} />
+      case 'ContentfulTypography': return (
+        <div id={`homePageContent_${index + 1}`} className="w-full overflow-hidden bg-black">
+          <Typography variant={content.variant} component={content.component}>
+            {content.body && content.body.body}
+          </Typography>
+        </div>
+      );
+      case 'ContentfulAnimatedCardsSection': return (
+        <div id={`homePageContent_${index + 1}`} className="w-full overflow-hidden bg-black">
+          <AnimatedCardsSection {...content} />
+        </div>
+      );
+      case 'ContentfulMotionPathSection': return (
+        <div id={`homePageContent_${index + 1}`} className="w-full overflow-hidden bg-black">
+          <MotionPathSection {...content} />
         </div>
       );
       default: return null;
@@ -36,6 +51,7 @@ class Home extends PureComponent {
     const { data, pageContext } = this.props;
     return (
       <>
+        <Metadata {...data.contentfulPage.metadata} />
         <Header headerData={pageContext.headerData} />
         <h1 className="h-0 overflow-hidden">{data.contentfulPage.title}</h1>
         {data.contentfulPage.pageContent.map((content, index) => (
@@ -58,20 +74,55 @@ query Home($url: String!) {
       title
       type
       url
+      metadata {
+        ...ContentfulMetadataFragment
+      }
       pageContent {
         componentType: __typename
         ... on ContentfulBanner {
           ...ContentfulBannerFragment
         }
-        ... on ContentfulSection {
+        ... on ContentfulTypography {
+          ...ContentfulTypographyFragment
+        }
+        ... on ContentfulAnimatedCardsSection {
           name
-          entryId: contentful_id
           variant
-          sectionTitle: title{
-            ...ContentfulTypographyFragment
-          }
+          contentful_id
           content {
-            ...ContentfulCardFragment
+            ... on ContentfulCard {
+              ...ContentfulCardFragment
+            }
+          }
+        }
+        ... on ContentfulMotionPathSection {
+          name
+          triggerHook
+          variant
+          contentful_id
+          content {
+            contentful_id
+            name
+            variant
+            startPath {
+              internal {
+                content
+              }
+            }
+            endPath {
+              internal {
+                content
+              }
+            }
+            content {
+              componentType: __typename
+              ... on ContentfulImage {
+                ...ContentfulImageFragment
+              }
+              ... on ContentfulTypography {
+                ...ContentfulTypographyFragment
+              }
+            }
           }
         }
       }
