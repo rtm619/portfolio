@@ -1,3 +1,6 @@
+button {
+  @apply outline-none;
+}
 /* LAYOUT CSS */
 .all-transitions {
   transition: all 0.5s ease-in-out;
