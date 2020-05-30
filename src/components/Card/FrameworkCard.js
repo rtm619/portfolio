@@ -42,7 +42,7 @@ return (
         </Typography>
       )}
       {link && (
-        <Button component="a" href={link.link && link.link.url} title={link.title} className={styles.link}>
+        <Button component="a" target="_blank" rel="noopener noreferrer" href={link.link && link.link.url} title={link.title} className={styles.link}>
           <span className={styles.linkText}>{link.text}</span>
           <Triangle className={styles.linkIcon} />
         </Button>

@@ -75,6 +75,7 @@
 }
 ::-webkit-scrollbar-thumb {
   @apply bg-black;
+  border: 1px solid white;
 }
 ::-webkit-scrollbar-thumb:hover {
   @apply bg-orange;
@@ -91,6 +92,22 @@
 }
 .frameworkcard-button:hover svg {
   @apply text-orange;
+}
+.progress-circle, .progress-arrow {
+  will-change: transform;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+.progress-arrow {
+  @apply opacity-0;
+  transform: translate3d(0, 10px, 0)
+}
+.btn-progress:hover .progress-circle {
+  @apply opacity-0;
+  transform: translate3d(0, -10px, 0);
+}
+.btn-progress:hover .progress-arrow {
+  @apply opacity-100;
+  transform: translate3d(0, 0, 0);
 }
 /* END OF MAIN CSS */
 /* MDL RESPONSIVE CSS */

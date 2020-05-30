@@ -9,6 +9,7 @@ import AnimatedCardsSection from '../components/AnimatedCardsSection/SectionCont
 import Typography from '../components/Typography/Typography';
 import MotionPathSection from '../components/MotionPathSection/Section';
 import Metadata from '../components/Metadata/Metadata';
+import PageProgress from '../components/PageProgress/PageProgress';
 
 class Home extends PureComponent {
   static propTypes = {
@@ -59,6 +60,7 @@ class Home extends PureComponent {
             {this.getPageContents(content, index)}
           </React.Fragment>
         ))}
+        <PageProgress />
         <div className="w-full h-screen flex items-center justify-center bg-black text-white font-SpartanBold text-center text-32">Something big is coming....</div>
         <div className="w-full h-screen flex items-center justify-center bg-black text-white font-SpartanBold text-center text-32">Placeholder</div>
       </>
