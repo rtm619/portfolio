@@ -68,7 +68,7 @@ button:focus {
 /* END OF LAYOUT CSS */
 /* MAIN CSS */
 .fade-in {
-  animation: fade-in 1s ease-in 1s forwards;
+  animation: fade-in 1s ease-in 0.5s forwards;
 }
 ::-webkit-scrollbar {
   @apply w-10;
@@ -82,19 +82,6 @@ button:focus {
 }
 ::-webkit-scrollbar-thumb:hover {
   @apply bg-orange;
-}
-.frameworkcard-button {
-  transition: background-color 0.75s ease-in-out;
-}
-.frameworkcard-button svg {
-  transform: translateX(49%);
-  transition: color 0.75s ease-in-out;
-}
-.frameworkcard-button:hover span {
-  @apply text-black;
-}
-.frameworkcard-button:hover svg {
-  @apply text-orange;
 }
 .progress-circle, .progress-arrow {
   will-change: transform;
@@ -132,21 +119,23 @@ button:focus {
     opacity: 1;
     transform: translateY(0%);
   }
+  .frameworkcard-button svg, .mail-btn svg {
+    transform: translateX(-110%);
+    transition: transform 0.75s ease-in-out;
+  }
+  .frameworkcard-button:hover span, .mail-btn:hover span {
+    transition: color 0.5s ease;
+    @apply text-black;
+  }
+  .frameworkcard-button:hover svg, .mail-btn:hover svg {
+    transform: translateX(0);
+  }
   .social-card {
     transition: opacity 0.5s ease, transform 0.5s ease;
     will-change: transform, opacity;
   }
   .social-card:hover {
     transform: scale(1.1);
-  }
-  .mail-btn {
-    background: linear-gradient(to right, orange 50%, black 50%);
-    background-size: 200% 100%;
-    background-position: right bottom;
-    transition: all 1s ease;
-  }
-  .mail-btn:hover {
-    background-position: left bottom;
   }
 }
 /* MDL RESPONSIVE CSS */

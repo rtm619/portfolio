@@ -5,6 +5,7 @@ import styles from './styles/SocialMediaSection.twstyle';
 import SocialCard from '../Card/SocialCard';
 import Typography from '../Typography/Typography';
 import Button from '../Button/Button';
+import Triangle from '../SVG/Triangle';
 
 const SocialMediaSection = ({
   socialCards, contactTitle, contactLink,
@@ -25,7 +26,8 @@ const SocialMediaSection = ({
         href={contactLink.link && contactLink.link.url}
         title={contactLink.title}
       >
-        {contactLink.text}
+        <span className={styles.mailButtonText}>{contactLink.text}</span>
+        <Triangle className={styles.mailButtonIcon} />
       </Button>
     </div>
   </div>
