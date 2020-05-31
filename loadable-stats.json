@@ -4,7 +4,7 @@
     "./node_modules/gatsby-core-utils/dist/get-gatsby-version.js 1:241-322\nCritical dependency: the request of a dependency is an expression\n @ ./node_modules/gatsby-core-utils/dist/index.js\n @ ./node_modules/gatsby-plugin-manifest/gatsby-ssr.js\n @ ./.cache/api-runner-ssr.js\n @ ./.cache/static-entry.js"
   ],
   "version": "4.43.0",
-  "hash": "30af95f6226cf7e857c8",
+  "hash": "99b5df3e886c85e1a010",
   "publicPath": "/portfolio/",
   "outputPath": "D:\\\\Workspace\\\\portfolio\\\\public",
   "assetsByChunkName": {
@@ -16,7 +16,7 @@
   "assets": [
     {
       "name": "render-page.js",
-      "size": 820992,
+      "size": 821736,
       "chunks": [
         "main"
       ],
@@ -28,7 +28,7 @@
     },
     {
       "name": "render-page.js.map",
-      "size": 874544,
+      "size": 875073,
       "chunks": [
         "main"
       ],
