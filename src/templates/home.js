@@ -10,6 +10,7 @@ import Typography from '../components/Typography/Typography';
 import MotionPathSection from '../components/MotionPathSection/Section';
 import Metadata from '../components/Metadata/Metadata';
 import PageProgress from '../components/PageProgress/PageProgress';
+import SocialMediaSection from '../components/SocialMediaSection/SocialMediaSection';
 
 class Home extends PureComponent {
   static propTypes = {
@@ -28,20 +29,25 @@ class Home extends PureComponent {
         </div>
       );
       case 'ContentfulTypography': return (
-        <div id={`homePageContent_${index + 1}`} className="w-full overflow-hidden bg-black">
+        <div id={`homePageContent_${index + 1}`} className={styles.genericSectionWrapper}>
           <Typography variant={content.variant} component={content.component}>
             {content.body && content.body.body}
           </Typography>
         </div>
       );
       case 'ContentfulAnimatedCardsSection': return (
-        <div id={`homePageContent_${index + 1}`} className="w-full overflow-hidden bg-black">
+        <div id={`homePageContent_${index + 1}`} className={styles.genericSectionWrapper}>
           <AnimatedCardsSection {...content} />
         </div>
       );
       case 'ContentfulMotionPathSection': return (
-        <div id={`homePageContent_${index + 1}`} className="w-full overflow-hidden bg-black">
+        <div id={`homePageContent_${index + 1}`} className={styles.genericSectionWrapper}>
           <MotionPathSection {...content} />
+        </div>
+      );
+      case 'ContentfulSocialMediaSection': return (
+        <div id={`homePageContent_${index + 1}`} className={styles.genericSectionWrapper}>
+          <SocialMediaSection {...content} />
         </div>
       );
       default: return null;
@@ -61,8 +67,6 @@ class Home extends PureComponent {
           </React.Fragment>
         ))}
         <PageProgress />
-        <div className="w-full h-screen flex items-center justify-center bg-black text-white font-SpartanBold text-center text-32">Something big is coming....</div>
-        <div className="w-full h-screen flex items-center justify-center bg-black text-white font-SpartanBold text-center text-32">Placeholder</div>
       </>
     );
   }
@@ -95,6 +99,17 @@ query Home($url: String!) {
             ... on ContentfulCard {
               ...ContentfulCardFragment
             }
+          }
+        }
+        ... on ContentfulSocialMediaSection {
+          name
+          contentful_id
+          socialCards {
+            ...ContentfulCardFragment
+          }
+          contactTitle
+          contactLink {
+            ...ContentfulLinkButtonFragment
           }
         }
         ... on ContentfulMotionPathSection {

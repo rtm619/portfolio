@@ -36,12 +36,11 @@ export default class PageProgress extends Component {
     return (
       <div className={styles.wrapper}>
         <button title="Go To Top" onClick={this.handleButtonClick} className={styles.button} type="button">
-          <svg height="20" width="20" viewBox="37.5 -62.5 25 25">
+          <svg className={styles.circleSvg} height="20" width="20" viewBox="37.5 -62.5 25 25">
             <circle
               cx="50"
               cy="50"
               r="10"
-              className={styles.circleSvg}
               strokeWidth={2}
               fill="transparent"
               strokeDasharray={63}
