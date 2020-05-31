@@ -4,7 +4,7 @@
     "./node_modules/gatsby-core-utils/dist/get-gatsby-version.js 1:241-322\nCritical dependency: the request of a dependency is an expression\n @ ./node_modules/gatsby-core-utils/dist/index.js\n @ ./node_modules/gatsby-plugin-manifest/gatsby-ssr.js\n @ ./.cache/api-runner-ssr.js\n @ ./.cache/static-entry.js"
   ],
   "version": "4.43.0",
-  "hash": "99b5df3e886c85e1a010",
+  "hash": "8a16f0e2d3cae59d26dc",
   "publicPath": "/portfolio/",
   "outputPath": "D:\\\\Workspace\\\\portfolio\\\\public",
   "assetsByChunkName": {
