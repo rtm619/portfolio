@@ -11,45 +11,46 @@ import Triangle from '../SVG/Triangle';
 const FrameworkCard = ({
   title, shortDescription, image, link,
 }) => {
-  const [isVisible, setVisible] = useState(true);
+  const [isVisible, setVisible] = useState(false);
   const domRef = useRef();
   useEffect(() => {
-    if (window.innerWidth >= process.env.GATSBY_MOBILE_BREAKPOINT) {
+    if (window.innerWidth >= Number(process.env.GATSBY_MOBILE_BREAKPOINT)) {
       const currentRef = domRef.current;
       const observer = new IntersectionObserver((entries) => {
         const entry = entries[0];
-        setVisible(entry.isIntersecting);
+        if (!isVisible && entry.isIntersecting) {
+          setVisible(true);
+          observer.unobserve(currentRef);
+        }
       });
       observer.observe(currentRef);
-      return () => observer.unobserve(currentRef);
     }
-    return () => null;
-  }, []);
-return (
-  <div ref={domRef} className={classnames(styles.wrapper, isVisible ? 'in-viewport-fade' : '')}>
-    {image && (
-      <Image className={styles.image} src={image.file && image.file.url} alt={image.title} />
-    )}
-    <div className={styles.contentWrapper}>
-      {title && (
-        <Typography component="div" className={styles.title}>
-          {title}
-        </Typography>
+  });
+  return (
+    <div ref={domRef} className={classnames(styles.wrapper, isVisible ? 'in-viewport-fade' : '')}>
+      {image && (
+        <Image className={styles.image} src={image.file && image.file.url} alt={image.title} />
       )}
-      {shortDescription && (
-        <Typography component="p" className={styles.shortDescription}>
-          {shortDescription.shortDescription}
-        </Typography>
-      )}
-      {link && (
-        <Button component="a" target="_blank" rel="noopener noreferrer" href={link.link && link.link.url} title={link.title} className={styles.link}>
-          <span className={styles.linkText}>{link.text}</span>
-          <Triangle className={styles.linkIcon} />
-        </Button>
-      )}
+      <div className={styles.contentWrapper}>
+        {title && (
+          <Typography component="div" className={styles.title}>
+            {title}
+          </Typography>
+        )}
+        {shortDescription && (
+          <Typography component="p" className={styles.shortDescription}>
+            {shortDescription.shortDescription}
+          </Typography>
+        )}
+        {link && (
+          <Button component="a" target="_blank" rel="noopener noreferrer" href={link.link && link.link.url} title={link.title} className={styles.link}>
+            <span className={styles.linkText}>{link.text}</span>
+            <Triangle className={styles.linkIcon} />
+          </Button>
+        )}
+      </div>
     </div>
-  </div>
-);
+  );
 };
 
 FrameworkCard.propTypes = {

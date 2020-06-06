@@ -91,17 +91,9 @@ button:focus {
   @apply opacity-0;
   transform: translate3d(0, 10px, 0)
 }
-.btn-progress:hover .progress-circle {
-  @apply opacity-0;
-  transform: translate3d(0, -10px, 0);
-}
-.btn-progress:hover .progress-arrow {
-  @apply opacity-100;
-  transform: translate3d(0, 0, 0);
-}
 /* END OF MAIN CSS */
-/* MDL RESPONSIVE CSS */
-@screen mdl {
+/* MD RESPONSIVE CSS */
+@screen md {
   .frameworkcard-wrapper {
     transition: all 1s ease-in;
     opacity: 0;
@@ -111,6 +103,10 @@ button:focus {
     opacity: 1;
     transform: translateY(0%);
   }
+}
+/* END OF MD RESPONSIVE CSS */
+/* MDL RESPONSIVE CSS */
+@screen mdl {
   .frameworkcard-content {
     transform: translateY(5%);
     transition: opacity 1s ease-in-out, transform 1s ease-in-out;
@@ -136,6 +132,14 @@ button:focus {
   }
   .social-card:hover {
     transform: scale(1.1);
+  }
+  .btn-progress:hover .progress-circle {
+    @apply opacity-0;
+    transform: translate3d(0, -10px, 0);
+  }
+  .btn-progress:hover .progress-arrow {
+    @apply opacity-100;
+    transform: translate3d(0, 0, 0);
   }
 }
 /* MDL RESPONSIVE CSS */
