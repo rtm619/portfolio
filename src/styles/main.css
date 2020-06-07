@@ -91,6 +91,9 @@ button:focus {
   @apply opacity-0;
   transform: translate3d(0, 10px, 0)
 }
+.not-found-btn {
+  width: 180px;
+}
 /* END OF MAIN CSS */
 /* MD RESPONSIVE CSS */
 @screen md {
@@ -115,15 +118,15 @@ button:focus {
     opacity: 1;
     transform: translateY(0%);
   }
-  .frameworkcard-button svg, .mail-btn svg {
+  .frameworkcard-button svg, .mail-btn svg, .not-found-btn svg {
     transform: translateX(-110%);
     transition: transform 0.75s ease-in-out;
   }
-  .frameworkcard-button:hover span, .mail-btn:hover span {
+  .frameworkcard-button:hover span, .mail-btn:hover span, .not-found-btn:hover span {
     transition: color 0.5s ease;
     @apply text-black;
   }
-  .frameworkcard-button:hover svg, .mail-btn:hover svg {
+  .frameworkcard-button:hover svg, .mail-btn:hover svg, .not-found-btn:hover svg {
     transform: translateX(0);
   }
   .social-card {
