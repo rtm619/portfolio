@@ -10,6 +10,11 @@ import styles from './styles/Header.twstyle';
 class Header extends Component {
   static propTypes = {
     headerData: PropTypes.object.isRequired,
+    isWhite: PropTypes.bool,
+  }
+
+  static defaultProps = {
+    isWhite: false,
   }
 
   constructor(props) {
@@ -17,7 +22,7 @@ class Header extends Component {
     this.state = {
       menuOpen: false,
       hideNav: true,
-      triggerColorChange: false,
+      triggerColorChange: props.isWhite,
     };
   }
 
@@ -30,15 +35,18 @@ class Header extends Component {
   }
 
   handleScroll = () => {
-    const firstFold = document.getElementById('homePageContent_1');
-    if (firstFold && window.pageYOffset > firstFold.getBoundingClientRect().height) {
-      this.setState({
-        triggerColorChange: true,
-      });
-    } else {
-      this.setState({
-        triggerColorChange: false,
-      });
+    const { isWhite } = this.props;
+    if (!isWhite) {
+      const firstFold = document.getElementById('homePageContent_1');
+      if (firstFold && window.pageYOffset > firstFold.getBoundingClientRect().height) {
+        this.setState({
+          triggerColorChange: true,
+        });
+      } else {
+        this.setState({
+          triggerColorChange: false,
+        });
+      }
     }
   }
 
@@ -51,6 +59,23 @@ class Header extends Component {
         hideNav: false,
       });
     } else {
+      document.body.classList.remove('overflow-hidden');
+      this.setState({
+        menuOpen: false,
+      });
+      setTimeout(() => {
+        const { menuOpen: open } = this.state;
+        if (!open) {
+          this.setState({
+            hideNav: true,
+          });
+        }
+      }, 1000);
+    }
+  }
+
+  menuItemClick = () => {
+    if (document.body.classList.contains('overflow-hidden')) {
       document.body.classList.remove('overflow-hidden');
       this.setState({
         menuOpen: false,
@@ -84,7 +109,7 @@ class Header extends Component {
           </div>
           <div className={styles.navContentWrapper}>
             {headerData.menuItems && headerData.menuItems.map((menuItem) => (
-              <Button key={menuItem.title} className={styles.navItem} component="Link" to={menuItem.link && menuItem.link.url} activeClassName="menu-item-active">
+              <Button key={menuItem.title} onClick={this.menuItemClick} className={styles.navItem} component="Link" to={menuItem.link && menuItem.link.url} activeClassName="menu-item-active">
                 <span className={styles.navText}>{menuItem.title}</span>
               </Button>
             ))}
