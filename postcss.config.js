@@ -18,7 +18,7 @@ module.exports = {
     ...(process.env.GATSBY_DEVELOPMENT === 'false' && {
       '@fullhuman/postcss-purgecss': {
         whitelistPatterns: [],
-        whitelist: [],
+        whitelist: ['text-orange'],
         defaultExtractor: (content) => content.match(/[A-Za-z0-9-_:/%]+/g) || [],
         content: ['./src/components/**/*.js', './src/pages/**/*.js', './src/templates/**/*.js'],
       },

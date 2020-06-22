@@ -1,3 +1,6 @@
+button:focus {
+  @apply outline-none;
+}
 /* LAYOUT CSS */
 .all-transitions {
   transition: all 0.5s ease-in-out;
@@ -62,3 +65,84 @@
 .hamburger-close:hover svg {
   @apply text-orange;
 }
+/* END OF LAYOUT CSS */
+/* MAIN CSS */
+.fade-in {
+  animation: fade-in 1s ease-in 0.5s forwards;
+}
+::-webkit-scrollbar {
+  @apply w-10;
+}
+::-webkit-scrollbar-track {
+  @apply bg-white;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-black;
+  border: 1px solid white;
+}
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-orange;
+}
+.progress-circle, .progress-arrow {
+  will-change: transform;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+.progress-arrow {
+  @apply opacity-0;
+  transform: translate3d(0, 10px, 0)
+}
+.not-found-btn {
+  width: 180px;
+}
+/* END OF MAIN CSS */
+/* MD RESPONSIVE CSS */
+@screen md {
+  .frameworkcard-wrapper {
+    transition: all 1s ease-in;
+    opacity: 0;
+    transform: translateY(10%);
+  }
+  .in-viewport-fade {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
+/* END OF MD RESPONSIVE CSS */
+/* MDL RESPONSIVE CSS */
+@screen mdl {
+  .frameworkcard-content {
+    transform: translateY(5%);
+    transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+  }
+  .frameworkcard-wrapper:hover .frameworkcard-content {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+  .frameworkcard-button svg, .mail-btn svg, .not-found-btn svg {
+    transform: translateX(-110%);
+    transition: transform 0.75s ease-in-out;
+  }
+  .frameworkcard-button:hover span, .mail-btn:hover span, .not-found-btn:hover span {
+    transition: color 0.5s ease;
+    @apply text-black;
+  }
+  .frameworkcard-button:hover svg, .mail-btn:hover svg, .not-found-btn:hover svg {
+    transform: translateX(0);
+  }
+  .social-card {
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    will-change: transform, opacity;
+  }
+  .social-card:hover {
+    transform: scale(1.1);
+  }
+  .btn-progress:hover .progress-circle {
+    @apply opacity-0;
+    transform: translate3d(0, -10px, 0);
+  }
+  .btn-progress:hover .progress-arrow {
+    @apply opacity-100;
+    transform: translate3d(0, 0, 0);
+  }
+}
+/* MDL RESPONSIVE CSS */

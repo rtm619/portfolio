@@ -10,6 +10,11 @@ import styles from './styles/Header.twstyle';
 class Header extends Component {
   static propTypes = {
     headerData: PropTypes.object.isRequired,
+    isWhite: PropTypes.bool,
+  }
+
+  static defaultProps = {
+    isWhite: false,
   }
 
   constructor(props) {
@@ -17,7 +22,7 @@ class Header extends Component {
     this.state = {
       menuOpen: false,
       hideNav: true,
-      triggerColorChange: false,
+      triggerColorChange: props.isWhite,
     };
   }
 
@@ -30,14 +35,18 @@ class Header extends Component {
   }
 
   handleScroll = () => {
-    if(window.pageYOffset > 100) {
-      this.setState({
-        triggerColorChange: true,
-      })
-    } else {
-      this.setState({
-        triggerColorChange: false,
-      })
+    const { isWhite } = this.props;
+    if (!isWhite) {
+      const firstFold = document.getElementById('homePageContent_1');
+      if (firstFold && window.pageYOffset > firstFold.getBoundingClientRect().height) {
+        this.setState({
+          triggerColorChange: true,
+        });
+      } else {
+        this.setState({
+          triggerColorChange: false,
+        });
+      }
     }
   }
 
@@ -65,17 +74,34 @@ class Header extends Component {
     }
   }
 
+  menuItemClick = () => {
+    if (document.body.classList.contains('overflow-hidden')) {
+      document.body.classList.remove('overflow-hidden');
+      this.setState({
+        menuOpen: false,
+      });
+      setTimeout(() => {
+        const { menuOpen: open } = this.state;
+        if (!open) {
+          this.setState({
+            hideNav: true,
+          });
+        }
+      }, 1000);
+    }
+  }
+
   render() {
     const { headerData } = this.props;
     const { menuOpen, hideNav, triggerColorChange } = this.state;
     return (
       <>
-        <div className={classnames(styles.wrapper, menuOpen ? 'menu-open' : 'menu-close', triggerColorChange ? 'black-gradient' : 'white-gradient')}>
+        <header className={classnames(styles.wrapper, menuOpen ? 'menu-open' : 'menu-close', triggerColorChange ? 'black-gradient' : 'white-gradient')}>
           <Button type="button" title="hamburger icon" component="button" className={styles.hamburgerButton} onClick={this.handleMenuClick}>
             <Logo className={classnames(styles.hamburgerIcon, triggerColorChange ? 'text-white' : 'text-black')} />
           </Button>
-        </div>
-        <div className={classnames(menuOpen ? styles.navigationWrapperOpen : styles.navigationWrapper, hideNav ? 'hidden' : '')}>
+        </header>
+        <nav className={classnames(menuOpen ? styles.navigationWrapperOpen : styles.navigationWrapper, hideNav ? 'hidden' : '')}>
           <div className={styles.closeButtonWrapper}>
             <Button type="button" title="close icon" component="button" className={styles.closeButton} onClick={this.handleMenuClick}>
               <CloseIcon className={styles.closeIcon} />
@@ -83,12 +109,12 @@ class Header extends Component {
           </div>
           <div className={styles.navContentWrapper}>
             {headerData.menuItems && headerData.menuItems.map((menuItem) => (
-              <Button key={menuItem.title} className={styles.navItem} component="Link" to={menuItem.link && menuItem.link.url} activeClassName="menu-item-active">
+              <Button key={menuItem.title} onClick={this.menuItemClick} className={styles.navItem} component="Link" to={menuItem.link && menuItem.link.url} activeClassName="menu-item-active">
                 <span className={styles.navText}>{menuItem.title}</span>
               </Button>
             ))}
           </div>
-        </div>
+        </nav>
       </>
     );
   }

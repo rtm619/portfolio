@@ -32,7 +32,10 @@ const Banner = ({
           <Typography className={componentStyle.title}>{title.body}</Typography>
         )}
         {shortDescription && (
-          <Typography className={componentStyle.shortDescription}>{shortDescription.body}</Typography>
+          <Typography
+            className={componentStyle.shortDescription}
+            innerHTML={shortDescription.body}
+          />
         )}
         {link && (
           <Button className={componentStyle.link} component="Link" />
@@ -48,7 +51,7 @@ Banner.propTypes = {
   desktopImage: PropTypes.object.isRequired,
   mobileImage: PropTypes.object.isRequired,
   variant: PropTypes.string.isRequired,
-  link: PropTypes.object.isRequired,
+  link: PropTypes.object,
 };
 
 export default Banner;
